@@ -18,6 +18,8 @@ use wasmparser::{
     SectionCode, Type as WpType,
 };
 
+use hashbrown::HashMap;
+
 pub fn read_module(wasm: &[u8]) -> Result<(ModuleInfo, CodeSectionReader), BinaryReaderError> {
     let mut info = ModuleInfo {
         memories: Map::new(),
@@ -42,6 +44,8 @@ pub fn read_module(wasm: &[u8]) -> Result<(ModuleInfo, CodeSectionReader), Binar
 
         namespace_table: StringTable::new(),
         name_table: StringTable::new(),
+
+        custom_sections: HashMap::new(),
     };
 
     let mut reader = ModuleReader::new(wasm)?;

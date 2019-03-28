@@ -1,4 +1,5 @@
 use crate::codegen::{CodegenError, FunctionCodeGenerator, ModuleCodeGenerator};
+use hashbrown::HashMap;
 use wasmer_runtime_core::{
     backend::{Backend, FuncResolver, ProtectedCaller},
     module::{
@@ -95,6 +96,8 @@ pub fn read_module<
 
         namespace_table: StringTable::new(),
         name_table: StringTable::new(),
+
+        custom_sections: HashMap::new(),
     };
 
     let mut reader = ModuleReader::new(wasm)?;

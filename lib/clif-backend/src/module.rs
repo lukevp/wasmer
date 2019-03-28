@@ -50,6 +50,8 @@ impl Module {
 
                 namespace_table: StringTable::new(),
                 name_table: StringTable::new(),
+
+                custom_sections: HashMap::new(),
             },
         }
     }
